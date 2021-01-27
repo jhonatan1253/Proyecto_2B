@@ -1,0 +1,81 @@
+#define kpa2atm 0.00986923267
+
+///////////////////sensor de presion 1 /////////////77
+// pin defs
+int pressurePin = 0;
+// variables
+int val;
+long int distancia1;
+float pkPa; // pressure in kPa
+float pAtm; // pressure in Atm
+unsigned long time;
+///////////////////sensor de presion 2 /////////////
+// pin defs
+int pressurePin1 = 1;
+// variables
+int val2;
+long int distancia12;
+float pkPa2; // pressure in kPa
+float pAtm2; // pressure in Atm
+///////////////////sensor de presion 3 /////////////
+// pin defs
+int pressurePin2 = 2;
+// variables
+int val3;
+long int distancia13;
+float pkPa3; // pressure in kPa
+float pAtm3; // pressure in Atm
+//////////////////////////sensor ultrasonico
+long tiempo=0; //Donde se va a guardar el tiempo de duración del pulso generado por el pin Echo
+long distancia=0; //Donde se va a guardar la distancia calculada
+int pinTrigger=7; 
+int pinEcho=6; 
+
+void setup()
+{
+  Serial.begin(9600);
+ pinMode(pinEcho,INPUT); // Configuración del pin 6 como entrada
+pinMode(pinTrigger,OUTPUT); //Configuración del pin 7 como salida
+
+Serial.println("SU4       S3         S2           S1");
+}
+
+void loop()
+{
+//////Sensor ultrasonico ///////
+digitalWrite(pinTrigger,LOW); //Se asegura un cero en el pin que se va a utilizar como Trigger
+delayMicroseconds(5);//Restardo de 5 microsegundo
+digitalWrite(pinTrigger,HIGH); //Se establece en alto el pin del trigger para comenzar el pulso de inicio del sensor
+delayMicroseconds(10); //retardo de 10 microsegundos (tiempo minimo para inicializar el trigger del sensor)
+digitalWrite(pinTrigger,LOW);//Se establece en bajo el pin del Trigger para terminar el pulso de inicio del sensor
+tiempo=pulseIn(pinEcho,HIGH);//Se inicia la función pulseIn para que mida el tiempo del pulso generado por el Echo del sensor
+distancia=tiempo*0.0343/2; //Calculo de distancia a la cual se encuentra el objeto
+distancia1=map(distancia,0,110,0,4);
+
+ /////////////sensor de presion 1  //////////
+  /* get the pressure */
+  val = analogRead(pressurePin);
+  pkPa = map((((float)val/(float)1023+0.095)/0.009),0,116,0,828);
+  pAtm = kpa2atm*pkPa;
+  /////////////sensor de presion 2  //////////
+  /* get the pressure */
+  val2 = analogRead(pressurePin1);
+  pkPa2 = map((((float)val2/(float)1023+0.095)/0.009),0,116,0,828);
+  pAtm2 = kpa2atm*pkPa2;
+  /////////////sensor de presion3  //////////
+  /* get the pressure */
+  val3 = analogRead(pressurePin2);
+  pkPa3 = map((((float)val3/(float)1023+0.095)/0.009),0,116,0,828);
+  pAtm3 = kpa2atm*pkPa3;
+  
+ 
+  /* send pressure to serial port */
+  Serial.print(distancia1);Serial.print(" cm  ");
+  Serial.print(pkPa);
+  Serial.print(" kPa  ");
+  Serial.print(pkPa2);
+  Serial.print(" kPa ");
+  Serial.print(pkPa3);
+  Serial.println(" kPa");
+  delay(1000);
+}
