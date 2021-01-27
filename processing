@@ -1,0 +1,496 @@
+import processing.serial.*;
+import ddf.minim.*;
+Serial port;
+//float dato;
+int dato1;
+PImage img;
+void setup (){
+   port= new Serial(this, "COM10",9600);
+  size(900,650); 
+  background(#83A0F5); 
+  stroke(0);
+ /////////////// plano carteasiano 1 //////////////// 
+ 
+  strokeWeight(4);   
+  line(50,50,50,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(50,250,250,250); 
+ /////////////// plano carteasiano 2 //////////////// 
+ 
+  strokeWeight(4);   
+  line(350,50,350,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(350,50,550,50); 
+ /////////////// plano carteasiano 3 //////////////// 
+ 
+  strokeWeight(4);    
+  line(650,50,650,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(650,50,850,50); 
+  
+  textSize(20);
+  fill(0);    
+  text("Valores Obtenidos de los sensores",10,30);     
+  text("PROYECTO FINAL  -   Jhonatan Jacome",10,640);  // numeracion del eje X
+  
+  textSize(15);
+  fill(0); 
+  text("eje x",10,60);
+  text("eje y",230,270);
+  text("0",40,270);
+  text("254",100,270);
+  text("462",170,270);
+  text("4",37,134);
+  
+  text("0",337,46);
+  text("25",325,135);
+  text("31",325,257);
+  text("356",400,46);
+  text("612",520,46);
+  text("eje y",550,46);
+  text("eje x",330,270);
+  
+  text("0",640,46);
+  text("1",635,145);
+  text("2",635,240);
+   text("eje y",850,46);
+  text("eje x",610,270);
+  text("544",700,46);
+  text("670",810,46);
+//////////////// Puntos de la Etique 1 /////////////  
+stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz1[col1][0])*0.2,(250-(matriz1[col1][1])*30), 5, 5);   
+  }
+  
+  stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz11[col1][0])*0.2,(250-(matriz11[col1][1])*30), 5, 5);   
+  }
+  
+   stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz12[col1][0])*0.2,(250-(matriz12[col1][1])*30), 5, 5);   
+  }
+  
+  //////////////// Puntos de la Etique 2 /////////////  
+stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(100+(matriz2[col1][0])*0.7,(-370+(matriz2[col1][1])*20), 5, 5);   
+  }
+  
+  stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(180+(matriz21[col1][0])*0.7,(-370+(matriz21[col1][1])*20), 5, 5);   
+  }
+  
+   stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(355+(matriz22[col1][0])*0.7,(-370+(matriz22[col1][1])*20), 5, 5);   
+  }
+  
+    //////////////// Puntos de la Etique 3 /////////////  
+stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz3[col1][0])*0.7,(49+(matriz3[col1][1])*90), 5, 5);   
+  }
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz31[col1][0])*0.7,(49+(matriz31[col1][1])*90), 5, 5);   
+  }
+  
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(650+(matriz32[col1][0])*0.7,(49+(matriz32[col1][1])*90), 5, 5);   
+  }
+  
+  
+}
+void serialEvent(Serial port){  // codigo del virtual Serial
+  float dato=port.read();   
+  dato1=int(dato); 
+  //println("Etiqueta"); 
+  println(dato);
+   println(dato1);
+}
+
+void draw(){
+  switch(dato1) {
+  case 1:
+  background(#83A0F5); 
+  stroke(0);
+ /////////////// plano carteasiano 1 //////////////// 
+ 
+  strokeWeight(4);   
+  line(50,50,50,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(50,250,250,250); 
+ /////////////// plano carteasiano 2 //////////////// 
+ 
+  strokeWeight(4);   
+  line(350,50,350,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(350,50,550,50); 
+ /////////////// plano carteasiano 3 //////////////// 
+ 
+  strokeWeight(4);    
+  line(650,50,650,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(650,50,850,50); 
+  
+  textSize(20);
+  fill(0);    
+  text("Valores Obtenidos de los sensores",10,30);     
+  text("PROYECTO FINAL  -   Jhonatan Jacome",10,640);  // numeracion del eje X
+  
+  textSize(15);
+  fill(0); 
+  text("eje x",10,60);
+  text("eje y",230,270);
+  text("0",40,270);
+  text("254",100,270);
+  text("462",170,270);
+  text("4",37,134);
+  
+  text("0",337,46);
+  text("25",325,135);
+  text("31",325,257);
+  text("356",400,46);
+  text("612",520,46);
+  text("eje y",550,46);
+  text("eje x",330,270);
+  
+  text("0",640,46);
+  text("1",635,145);
+  text("2",635,240);
+   text("eje y",850,46);
+  text("eje x",610,270);
+  text("544",700,46);
+  text("670",810,46);
+//////////////// Puntos de la Etique 1 /////////////  
+stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz1[col1][0])*0.2,(250-(matriz1[col1][1])*30), 5, 5);   
+  }
+  
+  stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz11[col1][0])*0.2,(250-(matriz11[col1][1])*30), 5, 5);   
+  }
+  
+   stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz12[col1][0])*0.2,(250-(matriz12[col1][1])*30), 5, 5);   
+  }
+  
+  //////////////// Puntos de la Etique 2 /////////////  
+stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(100+(matriz2[col1][0])*0.7,(-370+(matriz2[col1][1])*20), 5, 5);   
+  }
+  
+  stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(180+(matriz21[col1][0])*0.7,(-370+(matriz21[col1][1])*20), 5, 5);   
+  }
+  
+   stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(355+(matriz22[col1][0])*0.7,(-370+(matriz22[col1][1])*20), 5, 5);   
+  }
+  
+    //////////////// Puntos de la Etique 3 /////////////  
+stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz3[col1][0])*0.7,(49+(matriz3[col1][1])*90), 5, 5);   
+  }
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz31[col1][0])*0.7,(49+(matriz31[col1][1])*90), 5, 5);   
+  }
+  
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(650+(matriz32[col1][0])*0.7,(49+(matriz32[col1][1])*90), 5, 5);   
+  }
+    fill(0);
+    textSize(20);
+    text("ETIQUETA 1 => LA PERSONA SE ENCUENTRA SENTADA CORRECTAMENTE", 100, 550);
+    img=loadImage("s1.jpeg");
+    imageMode(CENTER);
+    image(img, 450, 400, 200, 200);
+    break;
+  case 2:
+  background(#83A0F5); 
+  stroke(0);
+ /////////////// plano carteasiano 1 //////////////// 
+ 
+  strokeWeight(4);   
+  line(50,50,50,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(50,250,250,250); 
+ /////////////// plano carteasiano 2 //////////////// 
+ 
+  strokeWeight(4);   
+  line(350,50,350,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(350,50,550,50); 
+ /////////////// plano carteasiano 3 //////////////// 
+ 
+  strokeWeight(4);    
+  line(650,50,650,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(650,50,850,50); 
+  
+  textSize(20);
+  fill(0);    
+  text("Valores Obtenidos de los sensores",10,30);     
+  text("PROYECTO FINAL  -   Jhonatan Jacome",10,640);  // numeracion del eje X
+  
+  textSize(15);
+  fill(0); 
+  text("eje x",10,60);
+  text("eje y",230,270);
+  text("0",40,270);
+  text("254",100,270);
+  text("462",170,270);
+  text("4",37,134);
+  
+  text("0",337,46);
+  text("25",325,135);
+  text("31",325,257);
+  text("356",400,46);
+  text("612",520,46);
+  text("eje y",550,46);
+  text("eje x",330,270);
+  
+  text("0",640,46);
+  text("1",635,145);
+  text("2",635,240);
+   text("eje y",850,46);
+  text("eje x",610,270);
+  text("544",700,46);
+  text("670",810,46);
+//////////////// Puntos de la Etique 1 /////////////  
+stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz1[col1][0])*0.2,(250-(matriz1[col1][1])*30), 5, 5);   
+  }
+  
+  stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz11[col1][0])*0.2,(250-(matriz11[col1][1])*30), 5, 5);   
+  }
+  
+   stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz12[col1][0])*0.2,(250-(matriz12[col1][1])*30), 5, 5);   
+  }
+  
+  //////////////// Puntos de la Etique 2 /////////////  
+stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(100+(matriz2[col1][0])*0.7,(-370+(matriz2[col1][1])*20), 5, 5);   
+  }
+  
+  stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(180+(matriz21[col1][0])*0.7,(-370+(matriz21[col1][1])*20), 5, 5);   
+  }
+  
+   stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(355+(matriz22[col1][0])*0.7,(-370+(matriz22[col1][1])*20), 5, 5);   
+  }
+  
+    //////////////// Puntos de la Etique 3 /////////////  
+stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz3[col1][0])*0.7,(49+(matriz3[col1][1])*90), 5, 5);   
+  }
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz31[col1][0])*0.7,(49+(matriz31[col1][1])*90), 5, 5);   
+  }
+  
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(650+(matriz32[col1][0])*0.7,(49+(matriz32[col1][1])*90), 5, 5);   }
+    fill(0);
+    textSize(20);
+    text("ETIQUETA 2 => LA PERSONA SE ENCUENTRA MEDIANAMENTE SENTADA", 100, 550);
+    img=loadImage("s2.jpeg");
+    imageMode(CENTER);
+    image(img, 450, 400, 200, 200);
+    break;
+  case 3:
+  background(#83A0F5); 
+  stroke(0);
+ /////////////// plano carteasiano 1 //////////////// 
+ 
+  strokeWeight(4);   
+  line(50,50,50,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(50,250,250,250); 
+ /////////////// plano carteasiano 2 //////////////// 
+ 
+  strokeWeight(4);   
+  line(350,50,350,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(350,50,550,50); 
+ /////////////// plano carteasiano 3 //////////////// 
+ 
+  strokeWeight(4);    
+  line(650,50,650,250);   //   derecha x, hacia arriba y , en x,  en y 
+  line(650,50,850,50); 
+  
+  textSize(20);
+  fill(0);    
+  text("Valores Obtenidos de los sensores",10,30);     
+  text("PROYECTO FINAL  -   Jhonatan Jacome",10,640);  // numeracion del eje X
+  
+  textSize(15);
+  fill(0); 
+  text("eje x",10,60);
+  text("eje y",230,270);
+  text("0",40,270);
+  text("254",100,270);
+  text("462",170,270);
+  text("4",37,134);
+  
+  text("0",337,46);
+  text("25",325,135);
+  text("31",325,257);
+  text("356",400,46);
+  text("612",520,46);
+  text("eje y",550,46);
+  text("eje x",330,270);
+  
+  text("0",640,46);
+  text("1",635,145);
+  text("2",635,240);
+   text("eje y",850,46);
+  text("eje x",610,270);
+  text("544",700,46);
+  text("670",810,46);
+//////////////// Puntos de la Etique 1 /////////////  
+stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz1[col1][0])*0.2,(250-(matriz1[col1][1])*30), 5, 5);   
+  }
+  
+  stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz11[col1][0])*0.2,(250-(matriz11[col1][1])*30), 5, 5);   
+  }
+  
+   stroke(0);
+  strokeWeight(2);
+  fill(#F7142F);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(80+(matriz12[col1][0])*0.2,(250-(matriz12[col1][1])*30), 5, 5);   
+  }
+  
+  //////////////// Puntos de la Etique 2 /////////////  
+stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(100+(matriz2[col1][0])*0.7,(-370+(matriz2[col1][1])*20), 5, 5);   
+  }
+  
+  stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(180+(matriz21[col1][0])*0.7,(-370+(matriz21[col1][1])*20), 5, 5);   
+  }
+  
+   stroke(0, 0, 255);
+  strokeWeight(2);
+  fill(#14F761);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(355+(matriz22[col1][0])*0.7,(-370+(matriz22[col1][1])*20), 5, 5);   
+  }
+  
+    //////////////// Puntos de la Etique 3 /////////////  
+stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz3[col1][0])*0.7,(49+(matriz3[col1][1])*90), 5, 5);   
+  }
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(350+(matriz31[col1][0])*0.7,(49+(matriz31[col1][1])*90), 5, 5);   
+  }
+  
+  stroke(#FCFCFC);
+  strokeWeight(2);
+  fill(#DDFF05);
+  for (int col1=0; col1<10; col1++) {
+    ellipse(650+(matriz32[col1][0])*0.7,(49+(matriz32[col1][1])*90), 5, 5);   }
+    fill(0);
+    textSize(20);
+    text("ETIQUETA 3 => LA PERSONA SE ENCUENTRA MAL SENTADA", 100, 550);
+    img=loadImage("s3.jpeg");
+    imageMode(CENTER);
+    image(img, 450, 400, 200, 200);
+    break;
+     case 'f':
+    background(#7D84FC);
+    
+    break;
+  }
+
+   
+}
